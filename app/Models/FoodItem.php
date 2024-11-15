@@ -12,7 +12,8 @@ class FoodItem extends Model
     protected $fillable = [
         'name',
         'price',
-        'inventory'
+        'inventory',
+        'unit'
     ];
 
     /**

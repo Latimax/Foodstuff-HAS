@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->decimal('price', 8, 2); // Price per unit
             $table->integer('inventory')->default(0); // Quantity in stock 
-            $table->string('image')->nullable();
+            $table->string('unit');
             $table->timestamps();
         });
     }

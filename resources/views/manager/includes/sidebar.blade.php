@@ -39,6 +39,16 @@
               <span class="hide-menu">Food Items</span>
             </a>
           </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link" href="{{ route('manager.fooditems.new') }}" aria-expanded="false">
+              <span>
+                <i class="ti ti-plus"></i>
+              </span>
+              <span class="hide-menu">Add Food Item</span>
+            </a>
+          </li>
+         
          
         
 
