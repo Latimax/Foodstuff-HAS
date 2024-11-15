@@ -14,6 +14,8 @@ class Voucher extends Model
         'beneficiary_id',
         'code',
         'is_redeemed',
+        'expiry_date',
+        'amount',
         'redeemed_at'
     ];
 

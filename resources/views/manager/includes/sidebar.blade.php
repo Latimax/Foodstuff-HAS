@@ -32,7 +32,7 @@
          
           
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('manager.fooditems.index') }}" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('manager/fooditems/*') && !Request::is('manager/fooditems/new')  ? 'active' : '' }}" href="{{ route('manager.fooditems.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-cards"></i>
               </span>
@@ -41,7 +41,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link" href="{{ route('manager.fooditems.new') }}" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('manager/fooditems/new') ? 'active' : '' }}" href="{{ route('manager.fooditems.new') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-plus"></i>
               </span>
@@ -49,7 +49,23 @@
             </a>
           </li>
          
-         
+          <li class="sidebar-item">
+            <a class="sidebar-link {{ Request::is('manager/voucher*') && !Request::is('manager/voucher/generate/new') ? 'active' : '' }}" href="{{ route('manager.vouchers.index') }}" aria-expanded="false">
+              <span>
+                <i class="ti ti-receipt"></i>
+              </span>
+              <span class="hide-menu">Vouchers</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link {{ Request::is('manager/voucher/generate/new') ? 'active' : '' }}" href="{{ route('manager.vouchers.generate') }}" aria-expanded="false">
+              <span>
+                <i class="ti ti-reload"></i>
+              </span>
+              <span class="hide-menu">Generate Voucher</span>
+            </a>
+          </li>
         
 
           <li class="nav-small-cap">

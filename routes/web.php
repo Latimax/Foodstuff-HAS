@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\NotificationController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\FoodItemController;
 use App\Http\Controllers\Manager\ManagerController;
+use App\Http\Controllers\Manager\VoucherController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -55,4 +56,11 @@ Route::middleware('manager')->group(function () {
     Route::put('manager/fooditems/{id}', [FoodItemController::class, 'update'])->name('manager.fooditems.update'); // Update a specific food item
     Route::delete('manager/fooditems/{id}', [FoodItemController::class, 'destroy'])->name('manager.fooditems.delete'); // Delete a specific food item
 
+    Route::get('manager/voucher', [VoucherController::class, 'index'])->name('manager.vouchers.index'); 
+    Route::get('manager/voucher/{id}', [VoucherController::class, 'show'])->name('manager.vouchers.show'); 
+    Route::get('manager/voucher/generate/new', [VoucherController::class, 'create'])->name('manager.vouchers.generate'); 
+    Route::post('manager/voucher/store', [VoucherController::class, 'store'])->name('manager.vouchers.store'); 
+    Route::put('manager/voucher/{id}', [VoucherController::class, 'update'])->name('manager.vouchers.update'); 
+    Route::delete('manager/voucher/{id}', [VoucherController::class, 'destroy'])->name('manager.vouchers.delete'); 
+    
 });

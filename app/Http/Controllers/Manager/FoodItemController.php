@@ -61,15 +61,7 @@ class FoodItemController extends Controller
     public function show(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
-        return view('manager.fooditems-show', compact('foodItem'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
+        return view('manager.fooditems', compact('foodItem'));
     }
 
     /**
