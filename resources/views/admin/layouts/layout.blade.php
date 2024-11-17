@@ -29,4 +29,6 @@
     @include('admin.includes.footer')
 </body>
 
+@yield('script')
+
 </html>

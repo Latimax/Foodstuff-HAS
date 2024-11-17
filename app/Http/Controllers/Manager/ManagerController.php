@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\Controller;
+use App\Models\Manager;
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -13,7 +15,14 @@ class ManagerController extends Controller
      */
     public function index()
     {
+   
         return view('manager.dashboard');
+    }
+
+    public function announcement()
+    {
+        $notification = Notification::first();
+        return view('manager.notification', compact('notification'));
     }
 
     /**
@@ -30,11 +39,18 @@ class ManagerController extends Controller
 
     public function loginManager(Request $request)
     {
-        
+
         $credentials = $request->only('email', 'password', 'role');
-        
-        if (Auth::guard('manager')->attempt($credentials)) {
+
+        // First check if credentials are valid and status is active
+        if (Auth::guard('manager')->attempt(array_merge($credentials, ['status' => 'active']))) {
             return redirect()->route('manager.dashboard');
+        }
+
+        // If authentication failed, check if it's due to inactive status
+        $manager = Manager::where('email', $request->email)->first();
+        if ($manager && $manager->status !== 'active') {
+            return back()->with(['message' => 'Account is inactive. Please contact administrator.']);
         }
 
         return back()->with(['message' => 'Invalid credentials']);
@@ -49,55 +65,5 @@ class ManagerController extends Controller
     public function dashboard()
     {
         return view('manager.dashboard');
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
-    
-    public function settings()
-    {
-        //
-    }
-
-    public function updateSettings()
-    {
-        //
     }
 }

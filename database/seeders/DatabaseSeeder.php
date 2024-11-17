@@ -30,12 +30,13 @@ class DatabaseSeeder extends Seeder
         //      'role' => 'admin'
         // ]);
 
-        // DB::table('admins')->insert([
-        //     'name' => 'Manager',
-        //     'email' => 'manager@manager.com',
-        //     'password' => Hash::make('manager1234'), // Hash the password
-        //      'role' => 'manager'
-        // ]);
+        DB::table('users')->insert([
+            'name' => 'Manager',
+            'email' => 'manager@manager.com',
+            'password' => Hash::make('manager1234'), // Hash the password
+             'role' => 'manager',
+             'status' => 'active'
+        ]);
 
         // DB::table('settings')->insert([
         //     'smtp_user' => null,

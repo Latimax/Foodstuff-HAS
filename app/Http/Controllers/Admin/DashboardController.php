@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\FoodItem;
+use App\Models\Setting;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -51,6 +53,12 @@ class DashboardController extends Controller
         return view('admin.dashboard');
     }
 
+    public function generateReport()
+    {
+        $settings = Setting::first();
+        $foodItems = FoodItem::all();
+        return view('admin.generate-report', compact('foodItems', 'settings'));
+    }
     /**
      * Store a newly created resource in storage.
      */

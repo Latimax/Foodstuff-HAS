@@ -39,11 +39,11 @@
           </li>
           
           <li class="sidebar-item">
-            <a class="sidebar-link" href="./ui-card.html" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('admin/generate*') ? 'active' : '' }}"" href="{{ route('admin.generate.report') }}" aria-expanded="false">
               <span>
-                <i class="ti ti-cards"></i>
+                <i class="ti ti-graph"></i>
               </span>
-              <span class="hide-menu">Card</span>
+              <span class="hide-menu">Generate Reports</span>
             </a>
           </li>
          
@@ -60,6 +60,16 @@
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">EXTRA</span>
           </li>
+          <li class="sidebar-item">
+            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('support.index') }}" aria-expanded="false">
+                <span>
+                    <i class="ti ti-headphones"></i> 
+                </span>
+                <span class="hide-menu">Support</span>
+            </a>
+        </li>
+        
+
           <li class="sidebar-item">
             <a class="sidebar-link" href="{{ route('admin.settings.index') }}" aria-expanded="false">
               <span>

@@ -18,7 +18,7 @@
             <span class="hide-menu">Home</span>
           </li>
           <li class="sidebar-item">
-            <a class="sidebar-link {{ Request::is('manager/dashboard') ? 'active' : '' }}" href="{{ route('manager.dashboard') }}" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('manager/dashboard*') ? 'active' : '' }}" href="{{ route('manager.dashboard') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-layout-dashboard"></i>
               </span>
@@ -72,6 +72,16 @@
             <i class="ti ti-dots nav-small-cap-icon fs-4"></i>
             <span class="hide-menu">EXTRA</span>
           </li>
+
+          <li class="sidebar-item">
+            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('support.create') }}" aria-expanded="false">
+              <span>
+                <i class="ti ti-mail"></i>
+              </span>
+              <span class="hide-menu">Support</span>
+            </a>
+          </li>
+
           <li class="sidebar-item">
             <a class="sidebar-link {{ Request::is('manager/settings*') ? 'active' : '' }}" href="{{ route('manager.settings.index') }}" aria-expanded="false">
               <span>

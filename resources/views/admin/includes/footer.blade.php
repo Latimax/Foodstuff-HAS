@@ -13,13 +13,3 @@
 <script src="{{ asset('admin/assets/js/dashboard.js') }}"></script>
 
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $('.table').DataTable({
-      "ordering": true,
-      "paging": true,
-      "searching": true,
-      "info": true,
-    });
-  });
-</script>

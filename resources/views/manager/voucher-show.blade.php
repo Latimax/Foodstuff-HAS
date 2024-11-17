@@ -56,6 +56,13 @@
                             <input type="datetime" class="form-control" id="expiry_date" name="expiry_date" value="{{ $voucher->expiry_date }}">
                         </div>
 
+                        <!-- Redeemed At -->
+                        <div class="mb-3">
+                            <label for="redeemed_at" class="form-label">Redeemed At</label>
+                            <input type="datetime" class="form-control" id="redeemed_at" name="redeemed_at" value="{{ $voucher->redeemed_at }}">
+                        </div>
+
+
                         <!-- Amount -->
                         <div class="mb-3">
                             <label for="amount" class="form-label">Amount</label>

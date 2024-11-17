@@ -31,3 +31,16 @@
         </form>
     </div>
 @endsection
+@section('script')
+  <script>
+    $(document).ready(function() {
+      $('.table').DataTable({
+        "ordering": true,
+        "paging": true,
+        "searching": true,
+        "info": true,
+      });
+    });
+  </script>
+  
+  @endsection
