@@ -9,13 +9,10 @@ use App\Http\Controllers\Manager\FoodItemController;
 use App\Http\Controllers\Manager\ManagerController;
 use App\Http\Controllers\Manager\VoucherController;
 use App\Http\Controllers\SupportRequestController;
+use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-
-Route::get('/login', function () {
-    return "Check";
-})->name('login');
 
 
 Route::get('/admin/login', [AdminDashboard::class, 'login'])->name('admin.login.form');
@@ -25,6 +22,14 @@ Route::get('admin/logout', [AdminDashboard::class, 'logout'])->name('admin.logou
 Route::get('/manager/login', [ManagerController::class, 'login'])->name('manager.login.form');
 Route::post('manager/login', [ManagerController::class, 'loginManager'])->name('manager.login');
 Route::get('manager/logout', [ManagerController::class, 'logout'])->name('manager.logout');
+
+
+Route::get('login', [UserDashboardController::class, 'login'])->name('login');
+Route::get('user/register', [UserDashboardController::class, 'register'])->name('user.register');
+Route::post('user/register', [UserDashboardController::class, 'createUser'])->name('user.create');
+Route::post('user/login', [UserDashboardController::class, 'loginUser'])->name('user.login');
+Route::get('user/logout', [UserDashboardController::class, 'logout'])->name('user.logout');
+
 
 Route::middleware('admin')->group(function () {
     Route::get('admin/dashboard', [AdminDashboard::class, 'dashboard'])->name('admin.dashboard');
@@ -105,4 +110,21 @@ Route::middleware('manager')->group(function () {
     
 });
 
-Route::middleware('auth')->group(function () {});
+Route::middleware('auth')->group( function () {
+    Route::get('user/dashboard', [UserDashboardController::class, 'dashboard'])->name('user.dashboard');
+
+    Route::get('user/settings', [UserDashboardController::class, 'settings'])->name('user.settings.index');
+    Route::post('user/settings', [UserDashboardController::class, 'updateSettings'])->name('user.settings.update');
+
+    Route::group(['prefix' => 'help'], function () {
+        // Show create form
+        Route::get('/create', [UserDashboardController::class, 'createSupport'])
+            ->name('user.support.create');
+
+        // Store new support request
+        Route::post('/', [SupportRequestController::class, 'store'])
+            ->name('user.support.store');
+    });
+
+    Route::get('user/dashboard/announcement', [UserDashboardController::class, 'announcement'])->name('user.dashboard.announcement');
+});

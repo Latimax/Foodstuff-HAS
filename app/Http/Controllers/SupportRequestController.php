@@ -39,8 +39,8 @@ class SupportRequestController extends Controller
             'message' => 'required|string',
         ]);
 
-        if (auth()->guard('web')->check()) {
-            $id =  auth()->guard('web')->id();
+        if (auth()->guard('auth')->check()) {
+            $id =  auth()->guard('auth')->id();
         }
         
         if (auth()->guard('manager')->check()) {

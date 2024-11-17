@@ -66,4 +66,12 @@ class ManagerController extends Controller
     {
         return view('manager.dashboard');
     }
+
+    public function settings() {
+        
+    }
+
+    public function updateSettings() {
+        
+    }
 }

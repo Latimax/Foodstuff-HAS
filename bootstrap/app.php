@@ -15,6 +15,7 @@ return Application::configure(basePath: dirname(__DIR__))
             [
                 'admin' => \App\Http\Middleware\AdminAuthMiddleware::class,
                 'manager' => \App\Http\Middleware\ManagerAuthMiddleware::class,
+                'auth' => \App\Http\Middleware\AuthMiddleware::class,
             ],
 
         );
