@@ -98,11 +98,11 @@ Route::middleware('manager')->group(function () {
     Route::group(['prefix' => 'help'], function () {
 
         // Show create form
-        Route::get('/create', [SupportRequestController::class, 'create'])
+        Route::get('manager/create', [SupportRequestController::class, 'create'])
             ->name('support.create');
 
         // Store new support request
-        Route::post('/', [SupportRequestController::class, 'store'])
+        Route::post('/manager/store', [SupportRequestController::class, 'store'])
             ->name('support.store');
     });
 

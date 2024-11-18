@@ -74,7 +74,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('support.create') }}" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('supp') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-mail"></i>
               </span>

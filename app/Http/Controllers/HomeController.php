@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FoodItem;
 use App\Models\Setting;
 use Illuminate\Http\Request;
 
@@ -12,9 +13,11 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $foodItems = FoodItem::paginate(10);
+    // Pass data to the view
         $settings = Setting::first();
         
-        return view('front-end.home', compact('settings'));
+        return view('front-end.home', compact('settings', 'foodItems'));
     }
 
     /**

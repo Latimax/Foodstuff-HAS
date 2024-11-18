@@ -24,9 +24,11 @@
 								<li><a href="{{ route('user.register') }}">Register</a></li>
 								<li>
 									<div class="header-icons">
-										<a href="{{ route('login') }}" class="boxed-btn">Login</a>
-										
+										<a href="{{ auth()->guard('manager')->check() ? route('manager.dashboard') : (auth()->guard('auth')->check() ? route('user.dashboard') : route('login')) }}" class="boxed-btn">
+											{{ auth()->guard('manager')->check() || auth()->guard('auth')->check() ? 'Dashboard' : 'Login' }}
+										</a>
 									</div>
+									
 								</li>
 							</ul>
 						</nav>
