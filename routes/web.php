@@ -8,6 +8,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Manager\FoodItemController;
 use App\Http\Controllers\Manager\ManagerController;
 use App\Http\Controllers\Manager\VoucherController;
+use App\Http\Controllers\OrdersController;
 use App\Http\Controllers\SupportRequestController;
 use App\Http\Controllers\User\UserDashboardController;
 use Illuminate\Support\Facades\Route;
@@ -127,4 +128,9 @@ Route::middleware('auth')->group( function () {
     });
 
     Route::get('user/dashboard/announcement', [UserDashboardController::class, 'announcement'])->name('user.dashboard.announcement');
+
+    Route::get('user/order/{id}/create', [OrdersController::class, 'create'])->name('order.create');
+    Route::post('user/order/', [OrdersController::class, 'store'])->name('orders.store');
+    Route::get('user/order/list', [OrdersController::class, 'index'])->name('user.orders.index');
+    Route::post('/check-voucher', [OrdersController::class, 'checkVoucher'])->name('user.vouchers.check');
 });

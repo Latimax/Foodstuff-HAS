@@ -24,4 +24,9 @@ class FoodItem extends Model
     {
         return $this->hasMany(Voucher::class);
     }
+
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
 }

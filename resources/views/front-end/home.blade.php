@@ -127,7 +127,7 @@
                         </div>
                         <h3>{{ $item->name }}</h3>
                         <p class="product-price"><span>Per {{ $item->unit }}</span> {{ $settings->currency }}{{ number_format($item->price, 2) }}</p>
-                        <a href="cart.html" class="cart-btn"><i class="fas fa-shopping-cart"></i> Add to Cart</a>
+                        <a href="{{ route('order.create', $item->id) }}" class="cart-btn"><i class="fas fa-shopping-cart"></i> Order Now</a>
                     </div>
                 </div>
             @endforeach

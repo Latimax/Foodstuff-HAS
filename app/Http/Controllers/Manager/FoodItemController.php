@@ -61,7 +61,7 @@ class FoodItemController extends Controller
     public function show(string $id)
     {
         $foodItem = FoodItem::findOrFail($id);
-        return view('manager.fooditems', compact('foodItem'));
+        return view('manager.fooditems-show', compact('foodItem'));
     }
 
     /**
