@@ -27,6 +27,12 @@ class UserDashboardController extends Controller
         return view('user.notification', compact('notification'));
     }
 
+    public function profile()
+    {
+        $user = User::findorfail(auth()->guard('auth')->id());
+        return view('user.profile', compact('user'));
+    }
+
     /**
      * Show the form for creating a new resource.
      */
@@ -107,13 +113,37 @@ class UserDashboardController extends Controller
 
     public function dashboard()
     {
-        return view('user.dashboard');
+        $user = User::findorfail(auth()->guard('auth')->id());
+        return view('user.dashboard', compact('user'));
     }
 
 
-    public function settings() {}
+    public function settings() {
+        return view('user.settings');
+    }
 
-    public function updateSettings() {}
+    public function updateSettings(Request $request) {
+           // Validate the request data
+           $request->validate([
+            'current_password' => 'required',
+            'new_password' => 'required|min:8|confirmed',
+        ]);
+
+        $user = User::findorfail(auth()->guard('auth')->id());
+
+        // Check if the current password matches
+        if (!Hash::check($request->current_password, $user->password)) {
+            return back()->withErrors(['current_password' => 'Current password is incorrect']);
+        }
+
+        // Update the user's password
+        $user->password = Hash::make($request->new_password);
+        $user->save();
+
+        // Redirect back with a success message
+        return back()->with('message', 'Password successfully updated');
+    
+    }
 
     public function createSupport()
     {
@@ -123,4 +153,5 @@ class UserDashboardController extends Controller
         $user = User::findorfail($id);
         return view('user.support', compact('user'));
     }
+
 }

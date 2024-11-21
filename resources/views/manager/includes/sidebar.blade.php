@@ -50,6 +50,15 @@
           </li>
          
           <li class="sidebar-item">
+            <a class="sidebar-link {{ Request::is('manager/orders*') || Request::is('manager/orders/show*') ? 'active' : '' }}" href="{{ route('manager.orders.index') }}" aria-expanded="false">
+              <span>
+                <i class="ti ti-arrow-down"></i>
+              </span>
+              <span class="hide-menu">Orders</span>
+            </a>
+          </li>
+
+          <li class="sidebar-item">
             <a class="sidebar-link {{ Request::is('manager/voucher*') && !Request::is('manager/voucher/generate/new') ? 'active' : '' }}" href="{{ route('manager.vouchers.index') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-receipt"></i>
@@ -74,7 +83,7 @@
           </li>
 
           <li class="sidebar-item">
-            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('support.index') }}" aria-expanded="false">
+            <a class="sidebar-link {{ Request::is('support*') ? 'active' : '' }}" href="{{ route('manager.support.create') }}" aria-expanded="false">
               <span>
                 <i class="ti ti-mail"></i>
               </span>

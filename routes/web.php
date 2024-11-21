@@ -100,14 +100,20 @@ Route::middleware('manager')->group(function () {
 
         // Show create form
         Route::get('manager/create', [SupportRequestController::class, 'create'])
-            ->name('support.create');
+            ->name('manager.support.create');
 
         // Store new support request
         Route::post('/manager/store', [SupportRequestController::class, 'store'])
-            ->name('support.store');
+            ->name('manager.support.store');
     });
 
     Route::get('manager/dashboard/announcement', [ManagerController::class, 'announcement'])->name('manager.announcement');
+    Route::get('/manager/settings', [ManagerController::class, 'settings'])->name('manager.settings.index');
+    Route::post('/manager/password/update', [ManagerController::class, 'updateSettings'])->name('manager.password.update');
+    
+    Route::get('manager/orders', [ManagerController::class, 'orders'])->name('manager.orders.index');
+    Route::get('manager/orders/show/{id}', [ManagerController::class, 'viewOrder'])->name('manager.orders.show');
+    Route::patch('manager/orders/update/{id}', [ManagerController::class, 'updateOrder'])->name('manager.order.updatestatus');
     
 });
 
@@ -128,7 +134,10 @@ Route::middleware('auth')->group( function () {
     });
 
     Route::get('user/dashboard/announcement', [UserDashboardController::class, 'announcement'])->name('user.dashboard.announcement');
-
+    Route::get('/user/profile', [UserDashboardController::class, 'profile'])->name('user.profile');
+    
+    Route::get('/user/settings', [UserDashboardController::class, 'settings'])->name('user.settings.index');
+    Route::post('/user/password/update', [UserDashboardController::class, 'updateSettings'])->name('user.password.update');
     Route::get('user/order/{id}/create', [OrdersController::class, 'create'])->name('order.create');
     Route::post('user/order/', [OrdersController::class, 'store'])->name('orders.store');
     Route::get('user/order/list', [OrdersController::class, 'index'])->name('user.orders.index');

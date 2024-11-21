@@ -21,7 +21,7 @@
                                 </div>
                             @endif
 
-                            <form action="{{ route('support.store') }}" method="POST">
+                            <form action="{{ route('manager.support.store') }}" method="POST">
                                 @csrf
                                 <div class="mb-3">
                                     <label for="subject" class="form-label">Subject</label>
